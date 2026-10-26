@@ -12,7 +12,7 @@ Pull up a chair. This site is my front porch on the internet: a place to share w
 
 - **Story** is where the longer writing lives: notes on engineering, working with AI agents, and the occasional detour.
 - **Library** is my shelf: documents worth keeping, bookmarks I trust, and scripts I reach for.
-- **Search** finds anything across all of it. Press `/` from any page.
+- **Search** finds anything across all of it. On a keyboard, press `/` from any page.
 
 ## How it's built
 

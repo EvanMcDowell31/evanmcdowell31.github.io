@@ -12,6 +12,9 @@
     {{ end }}
   </header>
   <div class="prose">{{ .Content }}</div>
+  {{ with .Params.linkedin }}
+  <p class="origin"><a href="{{ . }}" rel="noopener">{{ partial "icon.html" "external" }} Originally posted on LinkedIn. Join the conversation there.</a></p>
+  {{ end }}
   {{ if eq .Section "story" }}
   <nav class="pager" aria-label="More from the story">
     {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><span>Newer</span><strong>{{ .Title }}</strong></a>{{ end }}

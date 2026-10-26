@@ -128,7 +128,6 @@ kbd { font: 600 0.78em var(--mono); padding: 0.1em 0.45em; border-radius: 6px; b
   .tabbar .tab { flex-direction: column; gap: 0.1rem; padding: 0.45rem 0.25rem; border-radius: 16px; font-size: 0.72rem; }
   .tabbar .tab .icon { width: 22px; height: 22px; }
   .tabbar .tab[aria-current="page"] { background: var(--accent-soft); box-shadow: none; }
-  .site-footer { padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px)); }
 }
 
 /* ---------- Shared pieces ---------- */
@@ -307,6 +306,9 @@ details[open] > summary .chev { transform: rotate(180deg); background: var(--acc
 .copy { position: absolute; top: 0.5rem; right: 0.5rem; display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.25rem 0.65rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-soft); font: 700 0.78rem var(--sans); cursor: pointer; transition: color 0.2s, border-color 0.2s; }
 .copy:hover { color: var(--accent); border-color: var(--accent); }
 
+.origin { margin-top: 2.5rem; padding: 1rem 1.2rem; border-radius: var(--radius); background: var(--sage-soft); }
+.origin a { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; color: var(--moss); font-weight: 800; text-decoration: none; }
+.origin a:hover { text-decoration: underline; }
 .pager { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.75rem; margin-top: 3rem; }
 .pager a { display: grid; padding: 1rem 1.2rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none; transition: border-color 0.2s; }
 .pager a:hover { border-color: var(--accent); }
@@ -365,7 +367,8 @@ details[open] > summary .chev { transform: rotate(180deg); background: var(--acc
 .search-box input::-webkit-search-cancel-button { filter: sepia(1) saturate(2) hue-rotate(-20deg); }
 @media (hover: none) { .search-box kbd { display: none; } }
 .filters { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
-.filter input { position: absolute; opacity: 0; pointer-events: none; }
+.filter { position: relative; }
+.filter input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; pointer-events: none; }
 .filter span { display: inline-block; padding: 0.35rem 0.9rem; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink-soft); font-weight: 800; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; }
 .filter span:hover { border-color: var(--clay); }
 .filter input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--bg); }
@@ -538,4 +541,77 @@ details[open] > summary .chev { transform: rotate(180deg); background: var(--acc
 /* GenericStrong */ .chroma .gs { color:#ebdbb2 }
 /* GenericSubheading */ .chroma .gu { color:#b8bb26;font-weight:bold }
 /* GenericTraceback */ .chroma .gt { background-color:#fb4934;font-weight:bold }
+}
+
+/* ---------- Touch and phone polish ---------- */
+a, button, summary, label { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.wrap { padding-left: max(1.25rem, env(safe-area-inset-left, 0px)); padding-right: max(1.25rem, env(safe-area-inset-right, 0px)); }
+
+/* Lift-on-hover only where hover exists, so taps don't leave cards stuck mid-lift. */
+@media (hover: none) {
+  .btn:hover, .doorway:hover, .featured:hover, .result:hover, .chips-lg a:hover, .chips-lg button:hover { transform: none; }
+  .btn:hover .icon, .text-link:hover .icon, .back:hover .icon, .featured:hover .featured-cta .icon { transform: none; }
+  .btn:active, .doorway:active, .featured:active, .result:active, .item-link:active, .story-row:active { transform: scale(0.98); }
+  .project summary:active, .item > summary:active, .role summary:active { background: var(--surface-2); }
+  body { background-attachment: scroll; }
+}
+
+@media (max-width: 40rem) {
+  main { padding-block: 0.75rem 2.5rem; }
+  .header-inner { padding-block: 0.6rem; }
+  .brand { min-height: 44px; }
+
+  /* Bigger, thumb-friendly targets. */
+  .text-link { min-height: 44px; }
+  .back, .crumbs { min-height: 44px; margin-bottom: 0.5rem; }
+  .crumbs a { display: inline-flex; align-items: center; min-height: 44px; }
+  .tag { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding-inline: 0.15rem; }
+  .copy { padding: 0.5rem 0.85rem; min-height: 40px; }
+  .has-copy pre { padding-top: 3rem; }
+  .chips-lg a, .chips-lg button { min-height: 44px; padding-inline: 1rem; }
+  .footer-links { gap: 0 0.5rem; }
+  .footer-links a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 0.5rem; }
+
+  /* Hero: equal full-width buttons. */
+  .actions { flex-direction: column; }
+  .actions .btn { justify-content: center; min-height: 50px; }
+  .hero-meta { gap: 0.35rem 1rem; }
+
+  /* Sideways-scrolling chip rows bleed to the screen edge instead of clipping at the margin. */
+  .subtabs, .filters {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+    margin-inline: -1.25rem; padding-inline: 1.25rem; scroll-padding-inline: 1.25rem;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent);
+  }
+  .filters::-webkit-scrollbar { display: none; }
+  .subtabs a, .filter span { min-height: 44px; display: inline-flex; align-items: center; }
+  .filter { flex: none; }
+  .search-box kbd { display: none; }
+  .shelf-head h2 a { display: inline-flex; align-items: center; min-height: 44px; }
+  .subtabs a span, .chips-lg span { font-size: 0.75rem; }
+
+  /* Readable small text. */
+  .tabbar .tab { font-size: 0.75rem; min-height: 52px; }
+  .result-kind, .featured-label { font-size: 0.75rem; }
+  .chips li { font-size: 0.8125rem; }
+
+  /* Tighter cards so more fits on screen. */
+  .project summary, .role summary, .role-static { padding: 0.85rem 0.9rem; }
+  .points { padding: 0 0.9rem 1rem 2rem; }
+  .featured { margin-block: 0.75rem 2rem; }
+  .pager { grid-template-columns: 1fr; }
+  .pager .next { text-align: left; }
+
+  /* Clear the floating tab bar at the very bottom of every page. */
+  .site-footer { padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px)); }
+  .tabbar { left: max(0.75rem, env(safe-area-inset-left, 0px)); right: max(0.75rem, env(safe-area-inset-right, 0px)); }
+}
+
+@media (max-width: 22rem) {
+  .wrap { padding-left: max(1rem, env(safe-area-inset-left, 0px)); padding-right: max(1rem, env(safe-area-inset-right, 0px)); }
+  .subtabs, .filters { margin-inline: -1rem; padding-inline: 1rem; }
+  .doorway { padding: 0.7rem 0.85rem; }
+  .story-row { gap: 0.6rem; padding-inline: 0.5rem; }
+  .story-row time { width: 3rem; }
 }

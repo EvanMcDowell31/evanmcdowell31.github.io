@@ -1,0 +1,13 @@
+{{/* Returns a 1200x627 share card for the page: the base card with its title drawn on. */}}
+{{ $title := .Title }}
+{{ if .IsHome }}{{ $title = .Params.headline | default site.Title | plainify | htmlUnescape }}{{ end }}
+{{ $size := cond (gt (len $title) 40) 56 62 }}
+{{ $text := images.Text $title (dict
+  "font" (resources.Get "fonts/Fraunces72pt-SemiBold.ttf")
+  "color" "#3a2e24"
+  "size" $size
+  "linespacing" 14
+  "x" 80
+  "y" 190
+) }}
+{{ return (resources.Get "og/base.png" | images.Filter $text | resources.Copy (printf "og/%s.png" (strings.Trim .RelPermalink "/" | replaceRE "/" "-" | default "home"))) }}

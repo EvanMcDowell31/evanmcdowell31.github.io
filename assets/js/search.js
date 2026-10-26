@@ -12,6 +12,13 @@
   let index = null;
 
   const norm = (s) => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  // Code blocks reach the index still entity-encoded (&#39;); decode until stable.
+  const decoder = document.createElement('textarea');
+  const decode = (s) => {
+    let prev = s || '';
+    for (let i = 0; i < 3 && /&[#a-z0-9]+;/i.test(prev); i++) { decoder.innerHTML = prev; if (decoder.value === prev) break; prev = decoder.value; }
+    return prev;
+  };
   const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -112,7 +119,7 @@
   fetch(script.dataset.index)
     .then((r) => r.json())
     .then((data) => {
-      index = data.map((d) => ({
+      index = data.map((raw) => ({ ...raw, title: decode(raw.title), summary: decode(raw.summary), body: decode(raw.body) })).map((d) => ({
         ...d,
         _title: norm(d.title),
         _summary: norm(d.summary),
