@@ -1,0 +1,6 @@
+<span class="role-head">
+  <span class="role-when">{{ .when }}{{ with .where }} · {{ . }}{{ end }}</span>
+  <strong class="role-title">{{ .title }}{{ with .note }} <small>({{ . }})</small>{{ end }}</strong>
+  <span class="role-org">{{ .org }}</span>
+  <span class="role-summary">{{ .summary }}</span>
+</span>

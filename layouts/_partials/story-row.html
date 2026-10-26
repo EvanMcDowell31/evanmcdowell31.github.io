@@ -1,0 +1,10 @@
+<li>
+  <a class="story-row" href="{{ .RelPermalink }}">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2" }}</time>
+    <span class="story-row-text">
+      <strong>{{ .Title }}</strong>
+      {{ with .Summary }}<span>{{ . | plainify }}</span>{{ end }}
+    </span>
+    <span class="story-row-meta">{{ .ReadingTime }} min</span>
+  </a>
+</li>

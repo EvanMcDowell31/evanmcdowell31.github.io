@@ -1,7 +1,6 @@
 +++
 title = "Home"
+aliases = ["/about/"]
 +++
 
-Hi, I'm Evan, a Staff Software Engineer in Marietta, Georgia. I build web and iOS products in React, TypeScript and Swift, and lately a lot of agentic AI tooling that helps teams ship faster.
-
-Right now I'm a frontend contractor at Walmart Global Tech, working on Everyday Health Signals and Sparky, Walmart's AI shopping assistant. More [about me](/about/).
+I'm a Staff Software Engineer who loves the craft of building things people actually enjoy using. Most days that means React, TypeScript and Swift. Lately it also means teaching AI agents to be good teammates.

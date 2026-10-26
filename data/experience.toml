@@ -1,0 +1,66 @@
+# Roles render newest first on the home page. The first `featured` roles show
+# directly; the rest sit behind "Earlier chapters".
+featured = 3
+
+[[role]]
+title = "Staff Frontend Software Engineer"
+note = "contractor"
+org = "Walmart Global Tech"
+when = "2024 – now"
+where = "Remote"
+summary = "Early engineer on Everyday Health Signals, from beta to 100,000 users, and the AI-powered health swap in Sparky."
+points = [
+  "Led scoping and built the health swap feature for Sparky, Walmart's AI shopping assistant, in React/TypeScript on web and Swift/UIKit on iOS.",
+  "Designed an agentic-AI tooling platform: a two-tier skill system that gives coding agents team conventions, API contracts and release workflows.",
+  "Made AI-assisted delivery measurable with per-turn token attribution, and cut spend with multi-agent delegation.",
+  "Founded the team's E2E practice: a Playwright suite with UI, API and feature-flag verification, run against staging and prod.",
+  "Led a phased migration to Walmart's design system with zero production regressions.",
+  "Built identity verification, consent and partner access-code flows.",
+]
+
+[[role]]
+title = "Founding Engineer"
+org = "Ressio Software"
+when = "2022 – 2023"
+summary = "Helped build and launch construction management software for small home builders."
+points = ["React, Node.js and TypeScript across the product, from first commit through launch."]
+
+[[role]]
+title = "Software Engineering Mentor"
+org = "Formation"
+when = "2022"
+where = "Part-time"
+summary = "Mentored engineers in Formation's Fellowship as they prepared for jobs in tech."
+
+[[role]]
+title = "Software Engineer"
+org = "Favor"
+when = "2021 – 2022"
+summary = "React, Node.js and TypeScript across web products."
+
+[[role]]
+title = "Fullstack Software Engineer"
+org = "Ware2Go"
+when = "2019 – 2021"
+where = "Atlanta"
+summary = "Full-stack and mobile work across React, React Native, Node.js and Kotlin."
+
+[[role]]
+title = "Software Engineer"
+org = "Tata Consultancy Services"
+when = "2017 – 2018"
+where = "Atlanta"
+summary = "Java and Node.js, where it all started."
+
+[[school]]
+name = "Florida State University"
+degree = "B.S. Computer Science"
+when = "2014 – 2017"
+note = "Snare drum on the Marching Chiefs' Big 8 drumline."
+
+[[cert]]
+name = "AWS Technical Professional"
+[[cert]]
+name = "AWS Business Professional"
+[[cert]]
+name = "SAFe 4 Practitioner"

@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="article library-doc">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="{{ "library/" | relURL }}">Library</a> <span>/</span> <a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a>
+  </nav>
+  <header class="article-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Summary }}<p class="lede">{{ . | plainify }}</p>{{ end }}
+  </header>
+  {{ with .Params.link }}<p><a class="btn btn-primary" href="{{ . }}" rel="noopener">Visit {{ (urls.Parse .).Host | strings.TrimPrefix "www." }} {{ partial "icon.html" "external" }}</a></p>{{ end }}
+  <div class="prose">{{ .Content }}</div>
+</article>
+{{ end }}

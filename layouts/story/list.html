@@ -1,0 +1,34 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="eyebrow">{{ partial "icon.html" "story" }} The story</p>
+  <h1>Notes from the workbench</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+
+{{ $pages := .Pages.ByDate.Reverse }}
+{{ with index $pages 0 }}
+<a class="featured" href="{{ .RelPermalink }}">
+  <span class="featured-label">Latest chapter</span>
+  <h2>{{ .Title }}</h2>
+  {{ with .Summary }}<p>{{ . | plainify }}</p>{{ end }}
+  <span class="featured-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time> · {{ .ReadingTime }} min read
+  </span>
+  <span class="featured-cta">Read it {{ partial "icon.html" "arrow" }}</span>
+</a>
+{{ end }}
+
+{{ if gt (len $pages) 1 }}
+{{ $featured := index $pages 0 }}
+{{ range .Pages.GroupByDate "2006" }}
+<section class="year">
+  <h2 class="year-label">{{ .Key }}</h2>
+  <ul class="story-list">
+    {{ range .Pages }}{{ if ne .RelPermalink $featured.RelPermalink }}{{ partial "story-row.html" . }}{{ end }}{{ end }}
+  </ul>
+</section>
+{{ end }}
+{{ else }}
+<p class="soon">More chapters are on the way. <a href="{{ "story/index.xml" | relURL }}">Follow by RSS</a> to catch them.</p>
+{{ end }}
+{{ end }}

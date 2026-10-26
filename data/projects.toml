@@ -1,26 +1,36 @@
 [[project]]
 name = "Everyday Health Signals"
-description = "Walmart's personalized nutrition hub on walmart.com. Early engineer from beta through public launch, 0 to 100,000 users."
+blurb = "Walmart's personalized nutrition hub."
+detail = "Early engineer from beta through public launch on walmart.com, growing it from 0 to 100,000 users. Reorders, purchase insights, favorites, goals and nutrition deep-dives."
 tags = ["React", "TypeScript", "Swift"]
+icon = "leaf"
 
 [[project]]
 name = "Agentic dev tooling"
-description = "100+ reusable agent skills in five bundles, plus a multi-agent plugin, used and extended by a 12-person team."
+blurb = "Skills and agents that make a whole team faster."
+detail = "100+ reusable agent skills in five bundles and a multi-agent plugin, installed and extended by a 12-person team. About 40% of weekly token throughput runs through lower-cost sub-agents."
 tags = ["AI agents", "MCP", "Python"]
+icon = "spark"
 
 [[project]]
 name = "E2E regression suite"
-description = "263 Playwright tests across 41 specs, verifying UI, API and feature flags, run every weekday against staging and prod."
+blurb = "263 Playwright tests guarding production."
+detail = "41 specs with three-layer verification (UI, API and feature flags), parallelized across an account pool with self-healing auth, run every weekday against staging and prod."
 tags = ["Playwright", "TypeScript", "CI"]
+icon = "shield"
 
 [[project]]
 name = "Ressio"
-description = "Construction management software for small home builders. Founding engineer through launch."
+blurb = "Construction management for small home builders."
+detail = "Founding engineer through launch: client selections, messaging, daily logs and real-time cost tracking for builders and remodelers."
 url = "https://www.ressiosoftware.com"
 tags = ["React", "Node.js"]
+icon = "house"
 
 [[project]]
 name = "This website"
-description = "Built with Hugo, a Go static site generator, and deployed to GitHub Pages with Actions."
+blurb = "A cozy Hugo site, written in Go templates."
+detail = "Hand-built templates, client-side search from a build-time JSON index, and GitHub Actions deploys to Pages."
 url = "https://github.com/EvanMcDowell31/evanmcdowell31.github.io"
 tags = ["Go", "Hugo"]
+icon = "code"

@@ -1,11 +1,22 @@
 {{ define "main" }}
-<article>
-  <header class="post-header">
+<article class="article">
+  <a class="back" href="{{ .Parent.RelPermalink }}">{{ partial "icon.html" "back" }} {{ .Parent.Title }}</a>
+  <header class="article-head">
     <h1>{{ .Title }}</h1>
-    {{ if eq .Section "posts" }}
-    <p class="meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time> · {{ .ReadingTime }} min read</p>
+    {{ if eq .Section "story" }}
+    <p class="article-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      · {{ .ReadingTime }} min read
+      {{ with .GetTerms "tags" }}· {{ range . }}<a class="tag" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a> {{ end }}{{ end }}
+    </p>
     {{ end }}
   </header>
   <div class="prose">{{ .Content }}</div>
+  {{ if eq .Section "story" }}
+  <nav class="pager" aria-label="More from the story">
+    {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><span>Newer</span><strong>{{ .Title }}</strong></a>{{ end }}
+    {{ with .NextInSection }}<a class="next" href="{{ .RelPermalink }}"><span>Older</span><strong>{{ .Title }}</strong></a>{{ end }}
+  </nav>
+  {{ end }}
 </article>
 {{ end }}

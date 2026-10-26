@@ -1,0 +1,18 @@
+{{- $items := slice -}}
+{{- range site.RegularPages -}}
+  {{- $kind := "" -}}
+  {{- if eq .Section "story" }}{{ $kind = "Story" }}
+  {{- else if eq .Section "library" }}{{ $kind = .Parent.Title }}
+  {{- else }}{{ continue }}{{ end -}}
+  {{- $items = $items | append (dict
+    "title" (.Title | htmlUnescape)
+    "url" .RelPermalink
+    "kind" $kind
+    "summary" (.Summary | plainify | htmlUnescape)
+    "body" (.Plain | htmlUnescape | truncate 3000)
+    "tags" (.Params.tags | default slice)
+    "link" (.Params.link | default "")
+    "date" (.Date.Format "Jan 2, 2006")
+  ) -}}
+{{- end -}}
+{{- $items | jsonify -}}

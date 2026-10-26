@@ -36,13 +36,14 @@ LinkedIn returns 999 to bots, so it isn't really broken. Check internal links by
 
 ## 5. Live site
 
-`curl` `/`, `/about/`, `/posts/` and `/index.xml` on `https://evanmcdowell31.github.io`. Each should return 200. Check the latest Actions run succeeded (see the `publish-site` skill).
+`curl` `/`, `/search/`, `/library/`, `/story/`, `/search-index.json` and `/story/index.xml` on `https://evanmcdowell31.github.io`. Each should return 200, and the old `/about/` and `/posts/` URLs should redirect. Search depends on `search-index.json`, so check it parses as JSON and lists every story and library page. Check the latest Actions run succeeded (see the `publish-site` skill).
 
 ## 6. Content freshness
 
 Flag but don't edit:
 - placeholder text such as "Hello, world" or "Replace with"
-- `content/about.md` roles that may be out of date. Offer the `update-profile` skill.
+- roles in `data/experience.toml` that may be out of date. Offer the `update-profile` skill.
+- library sections with fewer than 3 items, which look thin on the Library tab
 - drafts (`draft = true`) older than a month
 - the newest post being more than 3 months old, if Evan wants a regular cadence
 

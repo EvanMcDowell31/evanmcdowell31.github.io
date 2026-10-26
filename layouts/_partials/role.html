@@ -1,0 +1,14 @@
+<li class="role">
+  <span class="dot" aria-hidden="true"></span>
+  {{ if .points }}
+  <details>
+    <summary>
+      {{ partial "role-head.html" . }}
+      <span class="chev">{{ partial "icon.html" "chevron" }}</span>
+    </summary>
+    <ul class="points">{{ range .points }}<li>{{ . }}</li>{{ end }}</ul>
+  </details>
+  {{ else }}
+  <div class="role-static">{{ partial "role-head.html" . }}</div>
+  {{ end }}
+</li>

@@ -1,0 +1,42 @@
+{{ define "main" }}
+{{ $root := site.GetPage "/library" }}
+{{ $isRoot := eq .RelPermalink $root.RelPermalink }}
+<header class="page-head">
+  <p class="eyebrow">{{ partial "icon.html" "library" }} The library</p>
+  <h1>{{ if $isRoot }}A shelf of things worth keeping{{ else }}{{ .Title }}{{ end }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+</header>
+
+<nav class="subtabs" aria-label="Library sections">
+  <a href="{{ $root.RelPermalink }}"{{ if $isRoot }} aria-current="page"{{ end }}>All <span>{{ len $root.RegularPagesRecursive }}</span></a>
+  {{ range $root.Sections.ByWeight }}
+  <a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $.RelPermalink }} aria-current="page"{{ end }}>
+    {{ partial "icon.html" .Params.icon }} {{ .Title }} <span>{{ len .RegularPages }}</span>
+  </a>
+  {{ end }}
+</nav>
+
+{{ if $isRoot }}
+{{ range $root.Sections.ByWeight }}
+<section class="shelf shelf-{{ .Params.icon }}">
+  <header class="shelf-head">
+    <span class="shelf-icon">{{ partial "icon.html" .Params.icon }}</span>
+    <div>
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p>{{ .Description }}</p>
+    </div>
+  </header>
+  <div class="items">
+    {{ range first 3 .RegularPages.ByTitle }}{{ partial "library-item.html" . }}{{ end }}
+  </div>
+  {{ if gt (len .RegularPages) 3 }}
+  <a class="text-link" href="{{ .RelPermalink }}">All {{ len .RegularPages }} {{ lower .Title }} {{ partial "icon.html" "arrow" }}</a>
+  {{ end }}
+</section>
+{{ end }}
+{{ else }}
+<div class="items shelf-{{ .Params.icon }}">
+  {{ range .RegularPages.ByTitle }}{{ partial "library-item.html" . }}{{ end }}
+</div>
+{{ end }}
+{{ end }}

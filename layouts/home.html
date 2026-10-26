@@ -1,29 +1,108 @@
 {{ define "main" }}
-<section class="intro">
-  {{ .Content }}
+{{ $exp := hugo.Data.experience }}
+{{ $stories := where site.RegularPages "Section" "story" }}
+{{ $library := where site.RegularPages "Section" "library" }}
+
+<section class="hero">
+  <p class="eyebrow">{{ partial "icon.html" "sun" }} Hey there, welcome in</p>
+  <h1>I'm Evan. I build <em>warm</em>, thoughtful software.</h1>
+  <div class="lede">{{ .Content }}</div>
+  <p class="hero-meta">
+    <span>{{ partial "icon.html" "pin" }} Marietta, Georgia</span>
+    <span>{{ partial "icon.html" "code" }} Staff Software Engineer</span>
+  </p>
+  <div class="actions">
+    <a class="btn btn-primary" href="{{ "story/" | relURL }}">Read the story {{ partial "icon.html" "arrow" }}</a>
+    <a class="btn" href="{{ "library/" | relURL }}">Browse the library</a>
+  </div>
 </section>
 
-{{ with hugo.Data.projects.project }}
-<section>
-  <h2>Projects</h2>
-  <ul class="cards">
-    {{ range . }}
-    <li class="card">
-      <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
-      <p>{{ .description }}</p>
-      {{ with .tags }}<p class="tags">{{ delimit . " · " }}</p>{{ end }}
-    </li>
+<section class="doorways" aria-label="Explore">
+  <a class="doorway door-story" href="{{ "story/" | relURL }}">
+    {{ partial "icon.html" "story" }}
+    <strong>Story</strong>
+    <span>{{ len $stories }} {{ cond (eq (len $stories) 1) "chapter" "chapters" }} of notes and essays</span>
+  </a>
+  <a class="doorway door-library" href="{{ "library/" | relURL }}">
+    {{ partial "icon.html" "library" }}
+    <strong>Library</strong>
+    <span>{{ len $library }} documents, bookmarks and scripts</span>
+  </a>
+  <a class="doorway door-search" href="{{ "search/" | relURL }}">
+    {{ partial "icon.html" "search" }}
+    <strong>Search</strong>
+    <span>Find anything. Press <kbd>/</kbd></span>
+  </a>
+</section>
+
+<section class="block" aria-labelledby="made">
+  <header class="block-head">
+    <p class="eyebrow">Things I've made</p>
+    <h2 id="made">A few projects I'm proud of</h2>
+    <p class="hint">Tap a card to open it.</p>
+  </header>
+  <div class="projects">
+    {{ range hugo.Data.projects.project }}
+    <details class="project">
+      <summary>
+        <span class="project-icon">{{ partial "icon.html" (.icon | default "spark") }}</span>
+        <span class="project-text">
+          <strong>{{ .name }}</strong>
+          <span>{{ .blurb }}</span>
+        </span>
+        <span class="chev">{{ partial "icon.html" "chevron" }}</span>
+      </summary>
+      <div class="reveal">
+        <p>{{ .detail }}</p>
+        {{ with .tags }}<ul class="chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+        {{ with .url }}<a class="text-link" href="{{ . }}">Visit {{ partial "icon.html" "external" }}</a>{{ end }}
+      </div>
+    </details>
     {{ end }}
-  </ul>
+  </div>
 </section>
-{{ end }}
 
-{{ $posts := where site.RegularPages "Section" "posts" }}
-{{ with $posts }}
-<section>
-  <h2>Recent posts</h2>
-  {{ partial "post-list.html" (first 5 .) }}
-  <p><a href="{{ "posts/" | relURL }}">All posts →</a></p>
+<section class="block" id="path" aria-labelledby="path-title">
+  <header class="block-head">
+    <p class="eyebrow">The path so far</p>
+    <h2 id="path-title">Where I've worked</h2>
+  </header>
+  {{ $featured := $exp.featured | default 3 }}
+  <ol class="timeline">
+    {{ range first $featured $exp.role }}{{ partial "role.html" . }}{{ end }}
+  </ol>
+  {{ with after $featured $exp.role }}
+  <details class="more">
+    <summary>{{ partial "icon.html" "chevron" }} Earlier chapters <span class="count">{{ len . }}</span></summary>
+    <ol class="timeline">
+      {{ range . }}{{ partial "role.html" . }}{{ end }}
+    </ol>
+  </details>
+  {{ end }}
+  <details class="more">
+    <summary>{{ partial "icon.html" "chevron" }} School and certificates</summary>
+    <div class="roots">
+      {{ range $exp.school }}
+      <div class="root">
+        {{ partial "icon.html" "cap" }}
+        <div><strong>{{ .name }}</strong><span>{{ .degree }} · {{ .when }}</span>{{ with .note }}<em>{{ . }}</em>{{ end }}</div>
+      </div>
+      {{ end }}
+      <ul class="chips">{{ range $exp.cert }}<li>{{ .name }}</li>{{ end }}</ul>
+    </div>
+  </details>
+</section>
+
+{{ with $stories }}
+<section class="block" aria-labelledby="fresh">
+  <header class="block-head">
+    <p class="eyebrow">Fresh from the story</p>
+    <h2 id="fresh">Latest writing</h2>
+  </header>
+  <ul class="story-list">
+    {{ range first 3 . }}{{ partial "story-row.html" . }}{{ end }}
+  </ul>
+  <a class="text-link" href="{{ "story/" | relURL }}">All of the story {{ partial "icon.html" "arrow" }}</a>
 </section>
 {{ end }}
 {{ end }}

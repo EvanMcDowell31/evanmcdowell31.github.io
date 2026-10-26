@@ -1,0 +1,29 @@
+{{ $kind := .Parent.Params.icon }}
+{{ if eq $kind "document" }}
+<a class="item item-link" href="{{ .RelPermalink }}">
+  <span class="item-icon">{{ partial "icon.html" "document" }}</span>
+  <span class="item-text"><strong>{{ .Title }}</strong><span>{{ .Summary | plainify }}</span></span>
+  <span class="chev chev-right">{{ partial "icon.html" "arrow" }}</span>
+</a>
+{{ else }}
+<details class="item">
+  <summary>
+    <span class="item-icon">{{ partial "icon.html" $kind }}</span>
+    <span class="item-text">
+      <strong>{{ .Title }}</strong>
+      {{ if eq $kind "bookmark" }}<span class="domain">{{ (urls.Parse .Params.link).Host | strings.TrimPrefix "www." }}</span>
+      {{ else }}<span>{{ .Summary | plainify }}</span>{{ end }}
+    </span>
+    <span class="chev">{{ partial "icon.html" "chevron" }}</span>
+  </summary>
+  <div class="reveal">
+    {{ if eq $kind "bookmark" }}
+    <p>{{ .Summary | plainify }}</p>
+    {{ with .Params.tags }}<ul class="chips">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>{{ end }}
+    <a class="btn btn-small" href="{{ .Params.link }}" rel="noopener">Visit {{ partial "icon.html" "external" }}</a>
+    {{ else }}
+    <div class="prose">{{ .Content }}</div>
+    {{ end }}
+  </div>
+</details>
+{{ end }}

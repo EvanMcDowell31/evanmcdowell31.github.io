@@ -1,27 +1,55 @@
 baseURL = "https://evanmcdowell31.github.io/"
 locale = "en-US"
 title = "Evan McDowell"
+capitalizeListTitles = false
 
 [params]
   description = "Evan McDowell, Staff Software Engineer: React, TypeScript, iOS and agentic AI tooling."
   github = "https://github.com/EvanMcDowell31"
   linkedin = "https://www.linkedin.com/in/evanmcdowell31"
-  email = "evanmcdowell31@gmail.com"
 
+# Page-level tabs. `icon` names an SVG in layouts/_partials/icon.html.
 [menus]
   [[menus.main]]
-    name = "Posts"
-    pageRef = "/posts"
+    name = "Home"
+    pageRef = "/"
     weight = 10
+    [menus.main.params]
+      icon = "home"
   [[menus.main]]
-    name = "About"
-    pageRef = "/about"
+    name = "Search"
+    pageRef = "/search"
     weight = 20
+    [menus.main.params]
+      icon = "search"
+  [[menus.main]]
+    name = "Library"
+    pageRef = "/library"
+    weight = 30
+    [menus.main.params]
+      icon = "library"
+  [[menus.main]]
+    name = "Story"
+    pageRef = "/story"
+    weight = 40
+    [menus.main.params]
+      icon = "story"
+
+[taxonomies]
+  tag = "tags"
 
 [markup.highlight]
   noClasses = false
-  style = "github"
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[outputFormats.searchindex]
+  mediaType = "application/json"
+  baseName = "search-index"
+  isPlainText = true
+  notAlternative = true
 
 [outputs]
-  home = ["html", "rss"]
+  home = ["html", "rss", "searchindex"]
   section = ["html", "rss"]

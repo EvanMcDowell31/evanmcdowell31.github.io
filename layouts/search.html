@@ -1,0 +1,36 @@
+{{ define "main" }}
+<header class="page-head">
+  <p class="eyebrow">{{ partial "icon.html" "search" }} Search</p>
+  <h1>What are you looking for?</h1>
+</header>
+
+<form class="search" role="search" action="{{ "search/" | relURL }}">
+  <label class="search-box">
+    {{ partial "icon.html" "search" }}
+    <span class="visually-hidden">Search the site</span>
+    <input id="q" name="q" type="search" placeholder="Try “playwright”, “hugo” or “swift”" autocomplete="off" spellcheck="false">
+    <kbd>/</kbd>
+  </label>
+  <div class="filters" role="radiogroup" aria-label="Filter by type">
+    {{ range slice "All" "Story" "Documents" "Bookmarks" "Scripts" }}
+    <label class="filter"><input type="radio" name="type" value="{{ . }}"{{ if eq . "All" }} checked{{ end }}><span>{{ . }}</span></label>
+    {{ end }}
+  </div>
+</form>
+
+<p id="status" class="search-status" aria-live="polite"></p>
+<ul id="results" class="results"></ul>
+
+<section id="browse" class="browse">
+  <h2>Or wander by tag</h2>
+  <ul class="chips chips-lg">
+    {{ range site.Taxonomies.tags.ByCount }}<li><button type="button" data-tag="{{ .Page.LinkTitle }}">#{{ .Page.LinkTitle }} <span>{{ .Count }}</span></button></li>{{ end }}
+  </ul>
+</section>
+<noscript><p class="soon">Search needs JavaScript. You can still browse the <a href="{{ "story/" | relURL }}">story</a> and the <a href="{{ "library/" | relURL }}">library</a>.</p></noscript>
+{{ end }}
+
+{{ define "scripts" }}
+{{ $js := resources.Get "js/search.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" data-index="{{ "search-index.json" | relURL }}" defer></script>
+{{ end }}

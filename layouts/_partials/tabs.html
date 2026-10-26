@@ -1,0 +1,10 @@
+{{ $current := partial "current-tab.html" .page }}
+<nav class="{{ .class }}" aria-label="{{ cond (eq .class "tabbar") "Tabs" "Main" }}">
+  {{ range site.Menus.main }}
+  {{ $seg := index (split (strings.TrimPrefix "/" .URL) "/") 0 | default "home" }}
+  <a class="tab" href="{{ .URL }}"{{ if eq $seg $current }} aria-current="page"{{ end }}>
+    {{ partial "icon.html" .Params.icon }}
+    <span>{{ .Name }}</span>
+  </a>
+  {{ end }}
+</nav>

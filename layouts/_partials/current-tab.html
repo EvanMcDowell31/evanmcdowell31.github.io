@@ -1,0 +1,3 @@
+{{/* Returns the tab a page belongs to: its first URL segment, or "home". */}}
+{{ $seg := index (split (strings.TrimPrefix "/" .RelPermalink) "/") 0 }}
+{{ return (cond (eq $seg "") "home" $seg) }}
