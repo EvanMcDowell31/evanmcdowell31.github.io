@@ -27,6 +27,10 @@ Deploys are automatic: a push to `main` runs `.github/workflows/hugo.yml`, which
    Wait in the background with an `until` loop until the status is `completed`, and report a `failure` with the run URL. To read the logs, check the job steps through `/actions/runs/<id>/jobs`.
 6. **Verify live.** `curl` the changed URLs on `https://evanmcdowell31.github.io` and confirm they return 200 with the new content. The CDN can lag the deploy by a minute or two.
 
+## After publishing a story
+
+To share a newly published story on LinkedIn, use the `share-to-linkedin` skill. Never post without Evan's explicit yes.
+
 ## Gotchas
 
 - The Pages source must stay set to **GitHub Actions** (repo Settings → Pages). If it's switched back to "Deploy from a branch", pushes will publish raw files instead of the Hugo build.

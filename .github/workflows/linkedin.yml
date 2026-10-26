@@ -1,0 +1,91 @@
+name: Share a story on LinkedIn
+
+# Manual only: Actions → "Share a story on LinkedIn" → Run workflow.
+# Leave dry_run checked to preview, then run again with it unchecked to post.
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Story slug (the file name in content/story without .md)"
+        required: true
+        type: string
+      text:
+        description: "Intro text for the LinkedIn post (blank = the story's summary)"
+        required: false
+        type: string
+      dry_run:
+        description: "Preview only, don't post"
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: linkedin
+  cancel-in-progress: false
+
+jobs:
+  share:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.168.0
+      SLUG: ${{ inputs.slug }}
+      TEXT: ${{ inputs.text }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: tools/linkedin/go.mod
+          cache-dependency-path: tools/linkedin/go.mod
+
+      - name: Install Hugo
+        run: |
+          curl -sLo "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+      - name: Build site
+        run: hugo --gc --minify
+
+      - name: Check the story is live
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://evanmcdowell31.github.io/story/${SLUG}/")
+          if [ "$code" != 200 ]; then
+            echo "::error::/story/${SLUG}/ returns $code. Publish the story before sharing it."
+            exit 1
+          fi
+
+      - name: Share
+        id: share
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+        run: |
+          args=(post -slug "$SLUG" -site "$GITHUB_WORKSPACE")
+          [ -n "$TEXT" ] && args+=(-text "$TEXT")
+          [ "${{ inputs.dry_run }}" = true ] && args+=(-dry-run)
+          cd tools/linkedin && go run . "${args[@]}"
+
+      - name: Record the LinkedIn link
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "content/story/${SLUG}.md"
+          git commit -m "Link ${SLUG} to its LinkedIn post"
+          git push
+          # Pushes made with GITHUB_TOKEN don't trigger workflows, so redeploy explicitly.
+          gh workflow run hugo.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Summary
+        if: ${{ !inputs.dry_run }}
+        env:
+          POST_URL: ${{ steps.share.outputs.post_url }}
+        run: |
+          echo "Posted to LinkedIn: $POST_URL" >> "$GITHUB_STEP_SUMMARY"
