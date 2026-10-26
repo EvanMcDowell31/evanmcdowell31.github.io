@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="intro">
+  {{ .Content }}
+</section>
+
+{{ with site.Data.projects.project }}
+<section>
+  <h2>Projects</h2>
+  <ul class="cards">
+    {{ range . }}
+    <li class="card">
+      <h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ with .url }}</a>{{ end }}</h3>
+      <p>{{ .description }}</p>
+      {{ with .tags }}<p class="tags">{{ delimit . " · " }}</p>{{ end }}
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ with $posts }}
+<section>
+  <h2>Recent posts</h2>
+  {{ partial "post-list.html" (first 5 .) }}
+  <p><a href="{{ "posts/" | relURL }}">All posts →</a></p>
+</section>
+{{ end }}
+{{ end }}

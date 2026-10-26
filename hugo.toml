@@ -1,0 +1,26 @@
+baseURL = "https://evanmcdowell31.github.io/"
+languageCode = "en-us"
+title = "Evan McDowell"
+
+[params]
+  description = "Evan McDowell: projects, writing, and notes."
+  github = "https://github.com/EvanMcDowell31"
+  email = "evanmcdowell31@gmail.com"
+
+[menus]
+  [[menus.main]]
+    name = "Posts"
+    pageRef = "/posts"
+    weight = 10
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 20
+
+[markup.highlight]
+  noClasses = false
+  style = "github"
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]

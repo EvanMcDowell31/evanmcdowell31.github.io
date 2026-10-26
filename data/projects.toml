@@ -1,0 +1,10 @@
+[[project]]
+name = "This website"
+description = "Personal site built with Hugo and deployed to GitHub Pages with Actions."
+url = "https://github.com/EvanMcDowell31/evanmcdowell31.github.io"
+tags = ["Go", "Hugo"]
+
+[[project]]
+name = "Project two"
+description = "Replace with something you've built."
+tags = ["placeholder"]
