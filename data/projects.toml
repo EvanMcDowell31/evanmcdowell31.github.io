@@ -21,8 +21,8 @@ icon = "shield"
 
 [[project]]
 name = "Ressio"
-blurb = "Construction management for small home builders."
-detail = "Founding engineer through launch: client selections, messaging, daily logs and real-time cost tracking for builders and remodelers."
+blurb = "$150K in recurring revenue in year one."
+detail = "Construction management software for small home builders. Founding engineer from first commit through launch: client selections, messaging, daily logs and real-time cost tracking. It reached $150K in live, active recurring revenue in its first year."
 url = "https://www.ressiosoftware.com"
 tags = ["React", "Node.js"]
 icon = "house"

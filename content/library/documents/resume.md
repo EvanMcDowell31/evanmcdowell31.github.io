@@ -15,10 +15,10 @@ Frontend and mobile engineering in React, TypeScript, React Native and Swift, pl
 ## Experience
 
 - **Walmart Global Tech**, Staff Frontend Software Engineer (contractor), 2024 to present
-- **Ressio Software**, Founding Engineer, 2022 to 2023
+- **Ressio Software**, Founding Engineer, 2022 to 2023. $150K in active recurring revenue in year one.
 - **Formation**, Software Engineering Mentor, 2022
 - **Favor**, Software Engineer, 2021 to 2022
-- **Ware2Go**, Fullstack Software Engineer, 2019 to 2021
+- **Ware2Go**, Fullstack Software Engineer, 2019 to 2021. My work made the company $20M in my last year.
 - **Tata Consultancy Services**, Software Engineer, 2017 to 2018
 
 The full story of each role is on the [home page](/#path).

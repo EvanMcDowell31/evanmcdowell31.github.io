@@ -22,8 +22,11 @@ points = [
 title = "Founding Engineer"
 org = "Ressio Software"
 when = "2022 – 2023"
-summary = "Helped build and launch construction management software for small home builders."
-points = ["React, Node.js and TypeScript across the product, from first commit through launch."]
+summary = "Founding engineer on construction management software for small home builders: $150K in active recurring revenue in year one."
+points = [
+  "Took the product from first commit through launch and its first paying builders.",
+  "React, Node.js and TypeScript across the product: client selections, messaging, daily logs and real-time cost tracking.",
+]
 
 [[role]]
 title = "Software Engineering Mentor"
@@ -43,7 +46,8 @@ title = "Fullstack Software Engineer"
 org = "Ware2Go"
 when = "2019 – 2021"
 where = "Atlanta"
-summary = "Full-stack and mobile work across React, React Native, Node.js and Kotlin."
+summary = "Full-stack and mobile engineer whose work made Ware2Go $20M in my last year there."
+points = ["Full-stack and mobile across React, React Native, Node.js and Kotlin."]
 
 [[role]]
 title = "Software Engineer"
