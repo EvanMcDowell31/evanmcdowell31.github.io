@@ -4,12 +4,12 @@
 {{ $library := where site.RegularPages "Section" "library" }}
 
 <section class="hero">
-  <p class="eyebrow">{{ partial "icon.html" "sun" }} Hey there, welcome in</p>
-  <h1>I'm Evan. I build <em>warm</em>, thoughtful software.</h1>
+  <p class="eyebrow">{{ partial "icon.html" "sun" }} Hey there, I'm Evan</p>
+  <h1>{{ .Params.headline | default .Title | safeHTML }}</h1>
   <div class="lede">{{ .Content }}</div>
   <p class="hero-meta">
     <span>{{ partial "icon.html" "pin" }} Marietta, Georgia</span>
-    <span>{{ partial "icon.html" "code" }} Staff Software Engineer</span>
+    <span>{{ partial "icon.html" "code" }} React · TypeScript · Swift · AI agents</span>
   </p>
   <div class="actions">
     <a class="btn btn-primary" href="{{ "story/" | relURL }}">Read the story {{ partial "icon.html" "arrow" }}</a>
