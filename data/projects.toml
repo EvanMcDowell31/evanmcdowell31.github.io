@@ -1,10 +1,26 @@
 [[project]]
-name = "This website"
-description = "Personal site built with Hugo and deployed to GitHub Pages with Actions."
-url = "https://github.com/EvanMcDowell31/evanmcdowell31.github.io"
-tags = ["Go", "Hugo"]
+name = "Everyday Health Signals"
+description = "Walmart's personalized nutrition hub on walmart.com. Early engineer from beta through public launch, 0 to 100,000 users."
+tags = ["React", "TypeScript", "Swift"]
 
 [[project]]
-name = "Project two"
-description = "Replace with something you've built."
-tags = ["placeholder"]
+name = "Agentic dev tooling"
+description = "100+ reusable agent skills in five bundles, plus a multi-agent plugin, used and extended by a 12-person team."
+tags = ["AI agents", "MCP", "Python"]
+
+[[project]]
+name = "E2E regression suite"
+description = "263 Playwright tests across 41 specs, verifying UI, API and feature flags, run every weekday against staging and prod."
+tags = ["Playwright", "TypeScript", "CI"]
+
+[[project]]
+name = "Ressio"
+description = "Construction management software for small home builders. Founding engineer through launch."
+url = "https://www.ressiosoftware.com"
+tags = ["React", "Node.js"]
+
+[[project]]
+name = "This website"
+description = "Built with Hugo, a Go static site generator, and deployed to GitHub Pages with Actions."
+url = "https://github.com/EvanMcDowell31/evanmcdowell31.github.io"
+tags = ["Go", "Hugo"]

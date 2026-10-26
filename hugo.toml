@@ -1,10 +1,11 @@
 baseURL = "https://evanmcdowell31.github.io/"
-languageCode = "en-us"
+locale = "en-US"
 title = "Evan McDowell"
 
 [params]
-  description = "Evan McDowell: projects, writing, and notes."
+  description = "Evan McDowell, Staff Software Engineer: React, TypeScript, iOS and agentic AI tooling."
   github = "https://github.com/EvanMcDowell31"
+  linkedin = "https://www.linkedin.com/in/evanmcdowell31"
   email = "evanmcdowell31@gmail.com"
 
 [menus]
