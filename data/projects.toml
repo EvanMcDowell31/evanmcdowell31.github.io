@@ -8,7 +8,7 @@ icon = "leaf"
 [[project]]
 name = "Agentic dev tooling"
 blurb = "Skills and agents that make a whole team faster."
-detail = "100+ reusable agent skills in five bundles and a multi-agent plugin, installed and extended by a 12-person team. About 40% of weekly token throughput runs through lower-cost sub-agents."
+detail = "170+ reusable agent skills in five bundles and a multi-agent plugin, installed and extended by a 12-person team. About 40% of weekly token throughput runs through lower-cost sub-agents."
 tags = ["AI agents", "MCP", "Python"]
 icon = "spark"
 
