@@ -1,6 +1,7 @@
 +++
 title = "You'd think outgrowing your job means you stop doing it"
 date = 2026-10-21T10:49:00-04:00
+draft = true
 summary = "For me it meant the opposite. When AI tooling frees up your week, spend it on things other people use."
 tags = ["ai", "career", "developer-productivity"]
 [params]

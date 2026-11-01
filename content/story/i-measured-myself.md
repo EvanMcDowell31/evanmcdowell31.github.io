@@ -1,6 +1,7 @@
 +++
 title = "I had no gauge, so I measured myself"
 date = 2026-10-20T18:05:00-04:00
+draft = true
 summary = "A year of merged PRs, product work only: from the 57th–85th percentile to the 99.95th, and what actually changed."
 tags = ["ai", "agents", "developer-productivity"]
 [params]

@@ -1,6 +1,7 @@
 +++
 title = "The job is changing, so I leaned in"
 date = 2026-10-22T21:53:00-04:00
+draft = true
 summary = "Skills instead of prompts, parallel agents instead of one chat, and a team that started contributing back."
 tags = ["ai", "agents", "career"]
 [params]

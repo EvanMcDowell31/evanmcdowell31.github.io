@@ -1,6 +1,7 @@
 +++
 title = "Most engineers aren't short on AI tools"
 date = 2026-10-19T14:20:00-04:00
+draft = true
 summary = "They're short on AI tools that are easy to run and worth what they cost. Here's the layer I built to fix that."
 tags = ["ai", "agents", "developer-productivity"]
 [params]
