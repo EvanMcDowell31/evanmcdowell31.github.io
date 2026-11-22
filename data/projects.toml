@@ -28,6 +28,14 @@ tags = ["React", "Node.js"]
 icon = "house"
 
 [[project]]
+name = "What's that muscle?"
+blurb = "Anatomy as a graph you can point at, in 3D."
+detail = "Tap the body or type “lats” and it names the muscle, then walk anatomy as a graph across all 11 body systems, and turn a 3D body you can peel layer by layer. 876 exercises and stretches are tied to the muscles they work, and physios and trainers can send a client handout as a link, with no server. A live prototype, built in Rust from open data. For learning, not diagnosis."
+url = "https://evanmcdowell31.github.io/whats-that-muscle/"
+tags = ["Rust", "WebGL2", "Open data"]
+icon = "body"
+
+[[project]]
 name = "This website"
 blurb = "A cozy Hugo site, written in Go templates."
 detail = "Hand-built templates, client-side search from a build-time JSON index, and GitHub Actions deploys to Pages."
