@@ -36,6 +36,14 @@ tags = ["Rust", "WebGL2", "Open data"]
 icon = "body"
 
 [[project]]
+name = "The Charters Graph"
+blurb = "Thirty-eight texts of rights, as a map to explore."
+detail = "From Magna Carta (1215) to the Disabilities Convention (2006), with the Declaration of Independence, the Constitution and the Bill of Rights among them, on a timeline by when and where each was made. 76 links say how each later text drew on an earlier one, most quoting both word for word. Pick one of 42 rights and the map lights every text that names it, and search finds any passage in any spelling. Free, and part of Irie, my open-source agent platform. A reading of the texts, not legal advice."
+url = "https://irie-people.github.io/charters/"
+tags = ["Go", "JavaScript", "Primary sources"]
+icon = "charter"
+
+[[project]]
 name = "This website"
 blurb = "A cozy Hugo site, written in Go templates."
 detail = "Hand-built templates, client-side search from a build-time JSON index, and GitHub Actions deploys to Pages."
